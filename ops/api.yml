@@ -1,0 +1,123 @@
+trigger:
+- main
+
+variables:
+  - name: environment
+    value: 'dev' # Cambia in 'stage' o 'prod' per altri ambienti
+  - name: containerRegistry
+    value: 'myacr.azurecr.io'
+  - name: apiImageName
+    value: 'skillbuilderlog-api'
+
+stages:
+# Stage 1: Infrastructure
+- stage: infrastructure
+  displayName: 'Deploy Infrastructure'
+  jobs:
+  - job: deploy_infrastructure
+    displayName: 'Deploy Azure Resources'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'ServiceConnectionName'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az deployment group create \
+            --resource-group $(environment)-rg \
+            --template-file infrastructure/main.bicep \
+            --parameters environment=$(environment)
+
+# Stage 2: Build API
+- stage: build-api
+  displayName: 'Build and Test API'
+  jobs:
+  - job: build_api
+    displayName: 'Build and Test .NET API'
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+    - task: UseDotNet@2
+      inputs:
+        packageType: 'sdk'
+        version: '9.0.x'
+    - script: |
+        dotnet restore
+        dotnet build --configuration Release
+        dotnet test --configuration Release --no-build --collect:"XPlat Code Coverage"
+      displayName: 'Restore, Build, and Test API'
+    - task: Docker@2
+      displayName: 'Build Docker Image for API'
+      inputs:
+        containerRegistry: '$(containerRegistry)'
+        repository: '$(apiImageName)'
+        command: 'buildAndPush'
+        Dockerfile: 'src/Applications/SkillBuilderLog.Api/Dockerfile'
+        tags: |
+          $(Build.BuildId)
+
+# Stage 3: Build Frontend
+- stage: build-frontend
+  displayName: 'Build and Test Frontend'
+  jobs:
+  - job: build_frontend
+    displayName: 'Build and Test React App'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - script: |
+        cd src/Applications/skillbuilderlog.app
+        npm install
+        npm run lint
+        npm run test
+        npm run build
+      displayName: 'Install, Lint, Test, and Build React App'
+    - task: Docker@2
+      displayName: 'Build Docker Image for Frontend'
+      inputs:
+        containerRegistry: '$(containerRegistry)'
+        repository: 'skillbuilderlog-frontend'
+        command: 'buildAndPush'
+        Dockerfile: 'src/Applications/skillbuilderlog.app/Dockerfile'
+        tags: |
+          $(Build.BuildId)
+
+# Stage 4: Deploy
+- stage: deploy
+  displayName: 'Deploy to Azure'
+  dependsOn:
+    - build-api
+    - build-frontend
+  jobs:
+  - job: deploy_api
+    displayName: 'Deploy API to Azure Container Apps'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'ServiceConnectionName'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az containerapp update \
+            --name skillbuilderlog-api \
+            --resource-group $(environment)-rg \
+            --image $(containerRegistry)/$(apiImageName):$(Build.BuildId)
+  - job: deploy_frontend
+    displayName: 'Deploy Frontend to Azure Container Apps'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'ServiceConnectionName'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az containerapp update \
+            --name skillbuilderlog-frontend \
+            --resource-group $(environment)-rg \
+            --image $(containerRegistry)/skillbuilderlog-frontend:$(Build.BuildId)

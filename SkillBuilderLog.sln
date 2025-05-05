@@ -1,0 +1,115 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36025.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ops", "ops", "{1C58F41D-751F-4B13-8229-8EFC96847D5C}"
+	ProjectSection(SolutionItems) = preProject
+		ops\api.yml = ops\api.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infra", "infra", "{AE460736-F6E7-45A6-9415-4636B1242ABE}"
+	ProjectSection(SolutionItems) = preProject
+		infra\main.bicep = infra\main.bicep
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{2AA2E793-CE4C-4EE8-B53B-F8A0FB6AC56A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{E8ED6546-3F89-4D49-9EBF-FF3815DAB8EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domains", "Domains", "{6EEF9046-3A6E-45DA-A4FC-D34DE5B35CA0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructures", "Infrastructures", "{89DA3DEA-C2BC-499C-B412-6960EE3B75D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9598414A-CD4B-4753-BCB2-D84F4193E13F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillBuilderLog.Core", "src\Domains\SkillBuilderLog.Core\SkillBuilderLog.Core.csproj", "{D54D364B-8890-42DB-BD25-2C74071EF181}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillBuilderLog.Storage", "src\Infrastructures\SkillBuilderLog.Storage\SkillBuilderLog.Storage.csproj", "{1E830E93-5175-488C-B782-70632E99EA9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillBuilderLog.Business", "src\Business\SkillBuilderLog.Business\SkillBuilderLog.Business.csproj", "{40199506-F031-4D2F-A47E-182E06E6B80E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillBuilderLog.Api", "src\Applications\SkillBuilderLog.Api\SkillBuilderLog.Api.csproj", "{7C16049F-9C88-4014-9730-C93079F36C20}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "skillbuilderlog.app", "src\Applications\skillbuilderlog.app\skillbuilderlog.app.esproj", "{A064E74C-C974-3884-23BA-905CECF88CED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillBuilderLog.Test", "src\Tests\SkillBuilderLog.Test\SkillBuilderLog.Test.csproj", "{49D19B29-4876-437C-ACD5-607D63CC4333}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "prompts", "prompts", "{F304329D-E3B9-483A-A654-5B59127FA525}"
+	ProjectSection(SolutionItems) = preProject
+		prompts\prompt_analysis.md = prompts\prompt_analysis.md
+		prompts\prompt_api.md = prompts\prompt_api.md
+		prompts\prompt_api2.md = prompts\prompt_api2.md
+		prompts\prompt_appdescription.md = prompts\prompt_appdescription.md
+		prompts\prompt_domain.md = prompts\prompt_domain.md
+		prompts\prompt_folder.md = prompts\prompt_folder.md
+		prompts\prompt_frontend.md = prompts\prompt_frontend.md
+		prompts\prompt_fud.md = prompts\prompt_fud.md
+		prompts\prompt_infrastructure.md = prompts\prompt_infrastructure.md
+		prompts\prompt_infrastructure_bestpractices.md = prompts\prompt_infrastructure_bestpractices.md
+		prompts\prompt_pipelines_bestpractice.md = prompts\prompt_pipelines_bestpractice.md
+		prompts\prompt_repository.md = prompts\prompt_repository.md
+		prompts\prompt_repository_frontend.md = prompts\prompt_repository_frontend.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{CC13C5B7-6BC1-4030-A710-5EC68C8E7598}"
+	ProjectSection(SolutionItems) = preProject
+		infra\modules\vnet.bicep = infra\modules\vnet.bicep
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D54D364B-8890-42DB-BD25-2C74071EF181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D54D364B-8890-42DB-BD25-2C74071EF181}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D54D364B-8890-42DB-BD25-2C74071EF181}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D54D364B-8890-42DB-BD25-2C74071EF181}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E830E93-5175-488C-B782-70632E99EA9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E830E93-5175-488C-B782-70632E99EA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E830E93-5175-488C-B782-70632E99EA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E830E93-5175-488C-B782-70632E99EA9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40199506-F031-4D2F-A47E-182E06E6B80E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40199506-F031-4D2F-A47E-182E06E6B80E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40199506-F031-4D2F-A47E-182E06E6B80E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40199506-F031-4D2F-A47E-182E06E6B80E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C16049F-9C88-4014-9730-C93079F36C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C16049F-9C88-4014-9730-C93079F36C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C16049F-9C88-4014-9730-C93079F36C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C16049F-9C88-4014-9730-C93079F36C20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A064E74C-C974-3884-23BA-905CECF88CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A064E74C-C974-3884-23BA-905CECF88CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A064E74C-C974-3884-23BA-905CECF88CED}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A064E74C-C974-3884-23BA-905CECF88CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A064E74C-C974-3884-23BA-905CECF88CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A064E74C-C974-3884-23BA-905CECF88CED}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{49D19B29-4876-437C-ACD5-607D63CC4333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49D19B29-4876-437C-ACD5-607D63CC4333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49D19B29-4876-437C-ACD5-607D63CC4333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49D19B29-4876-437C-ACD5-607D63CC4333}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2AA2E793-CE4C-4EE8-B53B-F8A0FB6AC56A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E8ED6546-3F89-4D49-9EBF-FF3815DAB8EC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{6EEF9046-3A6E-45DA-A4FC-D34DE5B35CA0} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{89DA3DEA-C2BC-499C-B412-6960EE3B75D0} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{9598414A-CD4B-4753-BCB2-D84F4193E13F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D54D364B-8890-42DB-BD25-2C74071EF181} = {6EEF9046-3A6E-45DA-A4FC-D34DE5B35CA0}
+		{1E830E93-5175-488C-B782-70632E99EA9B} = {89DA3DEA-C2BC-499C-B412-6960EE3B75D0}
+		{40199506-F031-4D2F-A47E-182E06E6B80E} = {E8ED6546-3F89-4D49-9EBF-FF3815DAB8EC}
+		{7C16049F-9C88-4014-9730-C93079F36C20} = {2AA2E793-CE4C-4EE8-B53B-F8A0FB6AC56A}
+		{A064E74C-C974-3884-23BA-905CECF88CED} = {2AA2E793-CE4C-4EE8-B53B-F8A0FB6AC56A}
+		{49D19B29-4876-437C-ACD5-607D63CC4333} = {9598414A-CD4B-4753-BCB2-D84F4193E13F}
+		{CC13C5B7-6BC1-4030-A710-5EC68C8E7598} = {AE460736-F6E7-45A6-9415-4636B1242ABE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5577610C-FCAB-4940-8470-FA54FD7700FB}
+	EndGlobalSection
+EndGlobal
